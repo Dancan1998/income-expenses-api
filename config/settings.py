@@ -123,5 +123,14 @@ STATIC_URL = '/static/'
 
 AUTH_USER_MODEL = 'authentication.User'
 REST_FRAMEWORK = {
-    'NON_FIELD_ERRORS_KEY': 'error'
+    'NON_FIELD_ERRORS_KEY': 'error',
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    )
 }
+# euqjwaoprzwdxdvx
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'dancanchibole8@gmail.com'
+EMAIL_HOST_PASSWORD = 'euqjwaoprzwdxdvx'
+EMAIL_PORT = 587
