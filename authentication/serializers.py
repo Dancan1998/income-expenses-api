@@ -53,6 +53,7 @@ class LoginSerializer(serializers.ModelSerializer):
         fields = ['id', 'email', 'password', 'username', 'tokens']
 
     def validate(self, attrs):
+        """Login a user with email and password and return the refresh and access token for the user"""
         email = attrs.get('email', '')
         password = attrs.get('password', '')
 
