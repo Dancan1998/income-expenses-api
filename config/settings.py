@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'authentication',
     'drf_yasg',
     'expenses',
+    'income',
 ]
 
 MIDDLEWARE = [
