@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from rest_framework import generics, status, views
 from rest_framework.response import Response
-from .serializers import RegisterSerializer, EmailVerificationSerializer, LoginSerializer
+from .serializers import RegisterSerializer, EmailVerificationSerializer, LoginSerializer, AdminAccessAllUsersSerializer
 from django.contrib.auth import get_user_model
 from .utils import Util
 from rest_framework_simplejwt.tokens import RefreshToken
@@ -11,6 +11,7 @@ import jwt
 from drf_yasg.utils import swagger_auto_schema
 from drf_yasg import openapi
 from django.conf import settings
+from rest_framework import permissions
 User = get_user_model()
 
 
@@ -75,3 +76,9 @@ class LoginView(generics.GenericAPIView):
         serializer.is_valid(raise_exception=True)
 
         return Response(serializer.data, status=status.HTTP_200_OK)
+
+
+class AdminAccessAllUsersView(generics.ListCreateAPIView):
+    queryset = User.objects.all()
+    serializer_class = AdminAccessAllUsersSerializer
+    permission_classes = [permissions.IsAuthenticated, permissions.IsAdminUser]

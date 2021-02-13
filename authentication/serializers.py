@@ -12,7 +12,7 @@ class RegisterSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ['id', 'username', 'email', 'password']
+        fields = ['username', 'email', 'password']
 
     def validate(self, attrs):
         """Validate the email using py3-validate-email package and username to be alphanumeric"""
@@ -71,3 +71,10 @@ class LoginSerializer(serializers.ModelSerializer):
             'username': user.username,
             'tokens': user.tokens()
         }
+
+
+class AdminAccessAllUsersSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ['id', 'is_superuser', 'username',
+                  'email', 'is_verified', 'is_active', 'is_staff']
